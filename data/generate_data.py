@@ -47,12 +47,12 @@ def data_random(zile_inapoi=365):
     start = datetime.now() - timedelta(days=zile_inapoi)
     return start + timedelta(days=random.randint(0, zile_inapoi))
 
-print("Se sterg datele vechi")
+print("Se sterg datele vechi...")
 with engine.connect() as conn:
     conn.execute(text("TRUNCATE order_items, orders, customers, products RESTART IDENTITY CASCADE"))
     conn.commit()
 
-print("Se insereaza produsele")
+print("Se insereaza produsele...")
 with engine.connect() as conn:
     for p in produse:
         conn.execute(text("""
@@ -61,7 +61,7 @@ with engine.connect() as conn:
         """), {"name": p[0], "category": p[1], "price": p[2], "stock": p[3], "reorder": p[4]})
     conn.commit()
 
-print("Se insereaza clientii")
+print("Se insereaza clientii...")
 customer_ids = []
 with engine.connect() as conn:
     for i, nume in enumerate(nume_clienti):
