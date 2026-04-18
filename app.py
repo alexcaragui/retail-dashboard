@@ -17,10 +17,10 @@ def get(endpoint):
         response.raise_for_status()
         return response.json()
     except requests.exceptions.ConnectionError:
-        st.error("❌ Serverul FastAPI nu este pornit! Pornește-l cu: uvicorn backend.main:app --reload")
+        st.error("Serverul FastAPI nu este pornit! Pornește-l cu: uvicorn backend.main:app --reload")
         st.stop()
     except Exception as e:
-        st.error(f"❌ Eroare: {e}")
+        st.error(f"Eroare: {e}")
         st.stop()
 
 st.set_page_config(page_title="Retail Dashboard", page_icon="📊", layout="wide")
